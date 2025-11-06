@@ -15,6 +15,13 @@ on:
         default: "staging"
 
 jobs:
+  check:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Environment
+        run: echo "Running in ${{ github.event.inputs.environment }}"
+
   test:
     runs-on: ${{ matrix.os }}
     strategy:
